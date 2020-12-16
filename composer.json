@@ -1,0 +1,19 @@
+{
+    "name": "1/alecaddd-plugin",
+    "description": "startedplugin php",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Tuan Vinh",
+            "email": "vinh.nguyentuan@dallmeier.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Inc\\": "./inc"
+        }
+    }
+}
