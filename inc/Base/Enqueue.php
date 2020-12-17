@@ -6,11 +6,10 @@
 
 namespace Inc\Base;
 
-class Enqueue
+use Inc\Base\BaseController;
+
+class Enqueue extends BaseController
 {
-    function __construct()
-    {
-    }
 
     public function register()
     {
@@ -19,7 +18,7 @@ class Enqueue
 
     function enqueue()
     {
-        wp_enqueue_style('pluginstyle', PLUGIN_URL . '/assets/mystyle.css');
-        wp_enqueue_script('pluginscript', PLUGIN_URL . '/assets/myscript.js');
+        wp_enqueue_style('pluginstyle', $this->plugin_url . '/assets/mystyle.css');
+        wp_enqueue_script('pluginscript', $this->plugin_url . '/assets/myscript.js');
     }
 }
