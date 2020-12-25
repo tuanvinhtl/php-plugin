@@ -24,6 +24,11 @@ class Admin extends BaseController
         $this->callbacks = new AdminCallbacks();
         $this->setPages();
         $this->setSubpages();
+
+        $this->setSettings();
+        $this->setSections();
+        $this->setFields();
+
         $this->settings->addPages($this->pages)->withSubPage('Dashboard')->addSubPages($this->subPages)->register();
     }
 
@@ -87,5 +92,63 @@ class Admin extends BaseController
                 }
             ]
         ];
+    }
+
+    public function setSettings()
+    {
+        $args = [
+            [
+                'option_group' => 'alecaddd_options_group',
+                'option_name' => 'text_example',
+                'callback' => array($this->callbacks, 'alecadddOptionsGroup'),
+            ],
+            [
+                'option_group' => 'alecaddd_options_group',
+                'option_name' => 'first_name',
+            ]
+        ];
+        $this->settings->setSettings($args);
+    }
+
+    public function setSections()
+    {
+        $args = [
+            [
+                'id' => 'alecaddd_admin_index',
+                'title' => 'Settings',
+                'callback' => array($this->callbacks, 'alecadddAdminSection'),
+                'page' => 'alecaddd_plugin'
+            ]
+        ];
+        $this->settings->setSections($args);
+    }
+
+    public function setFields()
+    {
+        $args = [
+            [
+                'id' => 'text_example',
+                'title' => 'Text example',
+                'callback' => array($this->callbacks, 'alecadddTextExample'),
+                'page' => 'alecaddd_plugin',
+                'section' => 'alecaddd_admin_index',
+                'args' => [
+                    'label_for' => 'text_example',
+                    'class' => 'example-class'
+                ]
+            ],
+            [
+                'id' => 'first_name',
+                'title' => 'First name',
+                'callback' => array($this->callbacks, 'alecadddFirstName'),
+                'page' => 'alecaddd_plugin',
+                'section' => 'alecaddd_admin_index',
+                'args' => [
+                    'label_for' => 'first_name',
+                    'class' => 'example-class'
+                ]
+            ]
+        ];
+        $this->settings->setFields($args);
     }
 }
